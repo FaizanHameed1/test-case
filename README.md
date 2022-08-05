@@ -1,4 +1,3 @@
-# test-case
 # Setting up K8S cluster on google Cloud & running rasa-x inside cluster
 Assuming Goodle Cloud CLI is pre configured
 ### 1) login you Google Cloud:
