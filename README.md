@@ -23,7 +23,11 @@ Assuming Goodle Cloud CLI is pre configured
 Note: Install kubectl if it is not installed
 ### 6) Installing helm:
   >>curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+
+
   >>chmod 700 get_helm.sh
+
+
   >>./get_helm.sh
 
   For more details https://helm.sh/docs/intro/install/
@@ -35,6 +39,8 @@ Note: Install kubectl if it is not installed
     Replace namespace name with name accprding to your choice
 ### 8) Creating and configuring values.yml file:
    >> touch values.yml
+
+
    >> code values.yml
    Copy paste the values.yml file from this github repo and save the file.
 ### 9) Adding rasa repo:
@@ -44,6 +50,7 @@ Note: Install kubectl if it is not installed
    Remember to replace namespace name.
 ### 11) Checking pods and services:
    >> kubectl --namespace namespace_name get pods
+   
    >> kubectl --namespace namespace_name get pods
     
     
