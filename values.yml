@@ -1,0 +1,24 @@
+rasax:
+    initialUser:
+        password: "xmlroy12"
+    passwordSalt: "xmlroy12"
+    token: "xmlroy12"
+    jwtSecret: "xmlroy12"
+    tag: "0.39.0"
+rasa:
+    token: "xmlroy"
+    tag: "2.8.0-full"
+rabbitmq:
+    rabbitmq:
+        install: false
+        enebled: false
+        #password: "xmlroy12"
+global:
+    postgresql:
+        install: false
+        enebled: false
+        # postgresqlPassword: "xmlroy12"
+    redis:
+        install: false
+        enebled: false
+        # password: "xmlroy12"
