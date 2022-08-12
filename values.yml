@@ -1,3 +1,10 @@
+
+#changing different parameters in "rabbitmq"
+#for further details check https://forum.rasa.com/t/cannot-upgrade-deployment-in-kubernates/50748/3
+
+
+# replicaCount: 2
+
 rasax:
     initialUser:
         password: "xmlroy12"
@@ -9,16 +16,19 @@ rasa:
     token: "xmlroy"
     tag: "2.8.0-full"
 rabbitmq:
-    rabbitmq:
-        install: false
-        enebled: false
-        #password: "xmlroy12"
-global:
-    postgresql:
-        install: false
-        enebled: false
-        # postgresqlPassword: "xmlroy12"
-    redis:
-        install: false
-        enebled: false
-        # password: "xmlroy12"
+  enabled: true
+  install: true
+  auth:
+    password: "xmlroy12"
+    erlangCookie: "xmlroy12"
+
+postgresql:
+    install: true
+    enebled: true
+    postgresqlPassword: "xmlroy12"
+# redis:
+#   enabled: false
+#   install: false
+# #   auth:
+# #     password: "xmlroy12"
+# #     erlangCookie: "xmlroy12"
