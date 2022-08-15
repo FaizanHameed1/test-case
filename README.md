@@ -2,6 +2,7 @@
 Assuming Goodle Cloud CLI is pre configured
 ### 1) Login youR Google Cloud:
 `gcloud auth login`
+
 `gcloud auth list`
 ### 2) Checking Project:
 To list project property
