@@ -38,7 +38,7 @@ For more details https://helm.sh/docs/intro/install/
 To check version
 `helm version`
 ### 7) Creating namespace:
-`kubectl create namespace namespace_name`
+`kubectl create namespace {namespace_name}`
 
 Replace namespace name with name accprding to your choice
 ### 8) Creating and configuring values.yml file:
@@ -50,11 +50,11 @@ Copy paste the values.yml file from this github repo and save the file.
 ### 9) Adding rasa repo:
 `helm repo add rasa-x https://rasahq.github.io/rasa-x-helm`
 ### 10) Deploy rasax:
-`helm install --generate-name --namespace namespace_name --values values.yml rasa-x/rasa-x`
+`helm install --generate-name --namespace {namespace_name} --values values.yml rasa-x/rasa-x`
 
 Remember to replace namespace name.
 ### 11) Checking pods and services:
-`kubectl --namespace namespace_name get pods`
+`kubectl --namespace {namespace_name} get pods`
    
  
     
