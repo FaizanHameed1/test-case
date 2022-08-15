@@ -1,4 +1,4 @@
-# Setting up K8S cluster on google Cloud & running rasa-x inside cluster
+# Deploying Rasa-X in k8s cluster on GCP using helm
 Assuming Goodle Cloud CLI is pre configured
 ### 1) Login youR Google Cloud:
 `gcloud auth login`
