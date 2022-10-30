@@ -56,7 +56,37 @@ Remember to replace namespace name.
 ### 11) Checking pods and services:
 `kubectl --namespace {namespace_name} get pods`
    
- 
-    
-    
+ # Setting up model tracker store
+
+1) Get pods with kubectl commands
+
+2) Check which container/pod have models. Mostly it will be in rasax pod.
+
+3) Open the shell inside the pod with command `kubectl --namespace namespace-name  exec --stdin --tty pod-name -- bash`
+or with this command `kubectl exec -it pod-name --namespace rasax -- bash`
+
+4)Install google cloud CLI inside pod. To download setup use `curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-407.0.0-linux-x86_64.tar.gz` command.
+
+Extract the content of zipped file with this command.
+`tar -xf google-cloud-cli-407.0.0-linux-x86.tar.gz`
+
+To install use the command `./google-cloud-sdk/install.sh`
+
+If you want more details check the following link.
+`https://cloud.google.com/sdk/docs/install`
+
+You can check installation documentation
+
+
+5) Make a bucket in gcp storage. You can do this after going inside your google cloud plateform account. Further you can make sub folder inside the bucket. My sub folder name will be "models". 
+Note: Point 6 & 7 is only for your better understanding purpose you can skip and go directly to point 8. In comming commands "models" is the name of sub folder inside bucket. Run the following command inside "model" folder directory in your pod.
+
+6) Use `gsutil rsync models gs://rasax-models/models/` command for one time model upload in bucket.
+Note: `gs://rasax-models/models/` is address of bucket/subfolder which will change according to every bucket name and its subfolder.To check this go in bucket name and in "configuratation" you can see gsutil url)
+
+7) To update models in bucket  in evey 60 seconds use watch command like `watch -n 60 gsutil rsync models gs://rasax-models/models/`
+
+8) To run the command in background detached mode `nohup watch -n 60 gsutil rsync models gs://rasax-models/models/`
+Note: After running on background detach mode you can close your terminal (that you have run inside container/pod). The command will run in every 60 seconds and if there will be a new model inside folder it will automatically upload it inside bucket. 
+
   
