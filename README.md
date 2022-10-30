@@ -58,7 +58,7 @@ Remember to replace namespace name.
    
  # Setting up model tracker store
 
-1) Get pods with kubectl commands
+1) Get pods with ` kubectl get pods -n namespace-name`
 
 2) Check which container/pod have models. Mostly it will be in rasax pod.
 
@@ -72,10 +72,8 @@ Extract the content of zipped file with this command.
 
 To install use the command `./google-cloud-sdk/install.sh`
 
-If you want more details check the following link.
+If you want more details visit the following link.
 `https://cloud.google.com/sdk/docs/install`
-
-You can check installation documentation
 
 
 5) Make a bucket in gcp storage. You can do this after going inside your google cloud plateform account. Further you can make sub folder inside the bucket. My sub folder name will be "models". 
