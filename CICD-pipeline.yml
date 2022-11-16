@@ -1,13 +1,14 @@
 #CI pipeline
-
 name: CI Pipeline
 on:
-  push:
-    branches:
-    - 'main'
-  pull_request:
-    branches: 
-    - 'main'
+  - pull_request
+# on:
+#   push:
+#     branches:
+#     - 'main'
+#   pull_request:
+#     branches: 
+#     - 'main'
 jobs:
   training-testing:
     name: Training and Testing
