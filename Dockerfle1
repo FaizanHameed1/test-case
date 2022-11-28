@@ -1,0 +1,13 @@
+# please change your model name in pipeline(config file) from "en_core_web_sm" to 
+# "en_core_web_md"
+
+FROM rasa/rasa:2.8.0-spacy-en
+WORKDIR /app/
+USER root
+COPY . /app
+# RUN chgrp -R root /app/models
+RUN chmod -R 770 /app/models
+# RUN python3 -m spacy download en_core_web_sm
+RUN rasa train nlu --fixed-model-name develop-nlu
+USER 1001
+CMD ["run", "--enable-api", "-m", "/app/models/develop-nlu.tar.gz"]
