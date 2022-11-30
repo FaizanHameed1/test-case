@@ -66,12 +66,9 @@ Remember to replace namespace name.
 or with this command `kubectl exec -it pod-name --namespace rasax -- bash`
 
 4) Install google cloud CLI inside pod. To download setup use `curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-407.0.0-linux-x86_64.tar.gz` command.
-
 Extract the content of zipped file with this command.
 `tar -xf google-cloud-cli-407.0.0-linux-x86.tar.gz`
-
 To install use the command `./google-cloud-sdk/install.sh`
-
 If you want more details visit the following link.
 `https://cloud.google.com/sdk/docs/install`
 
