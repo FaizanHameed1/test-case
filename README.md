@@ -86,23 +86,9 @@ Note: After running on background detach mode you can close your terminal (that 
 
 #Problem Solved: Running the training on old as well as new data.
 
-1- Here is the Docker file contents which will use to build the image
+1- Here is the updated Docker file contents which will use to build the image
 
-`
-# please change your model name in pipeline(config file) from "en_core_web_sm" to 
-# "en_core_web_md"
-
-FROM rasa/rasa:2.8.0-spacy-en
-WORKDIR /app/
-USER root
-COPY . /app
-# RUN chgrp -R root /app/models
-RUN chmod -R 770 /app/models
-# RUN python3 -m spacy download en_core_web_sm
-RUN rasa train nlu --fixed-model-name develop-nlu
-USER 1001
-CMD ["run", "--enable-api", "-m", "/app/models/develop-nlu.tar.gz"]
-`
+`https://github.com/FaizanHameed1/test-case/blob/main/Dockerfle1`
 
 Note: Assuming docker is installed on your pc. To install Docker visit `https://docs.docker.com/engine/install/ubuntu/`
 
