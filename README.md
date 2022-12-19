@@ -84,4 +84,96 @@ Note: `gs://rasax-models/models/` is address of bucket/subfolder which will chan
 8) To run the command in background detached mode `nohup watch -n 60 gsutil rsync models gs://rasax-models/models/`
 Note: After running on background detach mode you can close your terminal (that you have run inside container/pod). The command will run in every 60 seconds and if there will be a new model inside folder it will automatically upload it inside bucket. 
 
+#Problem Solved: Running the training on old as well as new data.
+
+1- Here is the Docker file contents which will use to build the image
+
+`
+# please change your model name in pipeline(config file) from "en_core_web_sm" to 
+# "en_core_web_md"
+
+FROM rasa/rasa:2.8.0-spacy-en
+WORKDIR /app/
+USER root
+COPY . /app
+# RUN chgrp -R root /app/models
+RUN chmod -R 770 /app/models
+# RUN python3 -m spacy download en_core_web_sm
+RUN rasa train nlu --fixed-model-name develop-nlu
+USER 1001
+CMD ["run", "--enable-api", "-m", "/app/models/develop-nlu.tar.gz"]
+`
+
+Note: Assuming docker is installed on your pc. To install Docker visit `https://docs.docker.com/engine/install/ubuntu/`
+
+2- Build a docker image from this file (mentioned above). For example, in my case I build a Docker image by running the following command from the shell (inside the Dockerfile directory) `docker build -t username/raspacy:3.2 . `
+`username` is my user name while `raspacy` is repo name and `3.2` is tag name.
+
+3- From CLI login Docker Hub with following command
+`Docker login`
+Enter your user name and password.
+
+
+2- Upload/push Docker image to Docker hub with the help of this command `docker push`.
+For example in my case I have completed this task by running this command `docker push username/raspacy:3.2`
+Again `username` is my user name while `raspacy` is repo name and `3.2` is tag of the image.
+ 
+ 3- Now go inside your helm folder. Open your values.yml file(The file from which rasax deployed using helm)
+ 4- Pull the image inside your helm chart by mentioning the image name.
+For example my values.yaml file is:
+`
+ 
+rasax:
+   initialUser:
+       username: "admin"
+       password: "any"
+   passwordSalt: "any"
+   token: "any"
+   jwtSecret: "any"
+   tag: "0.39.3"
+rasa:
+       # name: "abdullahmakhdoom98/chatbot"
+       # tag: "latest"
+       name: "5532950/raspacy"
+       tag: "3.2"
+       versions:
+               rasaProduction:
+                       enabled: true
+               rasaWorker:
+                       enabled: true
+ 
+ 
+#old settings
+rabbitmq:
+       enabled: true
+       install: true
+       auth:
+               password: "any"
+               erlangCookie: "any"
+ 
+ 
+ 
+debugMode: "true"
+`
+
+5- After saving the values.yml file if you have pre deployed rasax than get the release name using `helm list -a -n namespace-name`. To get namespaces names `kubectl get namespace`. Assuming that you have done the setup of google cloud CLI and also installed kubectl, created the K8 cluster and installed helm. For help check https://github.com/FaizanHameed1/test-case
+
+6- Add rasax repo with  `helm repo add rasa-x https://rasahq.github.io/rasa-x-helm`
+To check repos “helm repo list”
+
+7- To  Upgrade the old deployment use this command in the same directory as values.yml file `helm upgrade release-name -n namespace-name –values values.yml rasa-x/rasa-x`.
+If you are installing new release instead of upgrading the old one  then use `helm install release-name -n namespace-name –value values.yml rasa-x/rasa-x`. 
+8- To get pods `kubectl get pods -n namespace-name`.
+9- After running all pods get services with  `kubectl get svc -n namespace-name`
+
+10- Copy the external ip from load balancer service and run on browser `http://ip:8000`
+
+11- Login rasax with the help of credentials.
+12-Connect your repo with it.
+13-Run the training.
+
+ 14-Done
+
+
+
   
