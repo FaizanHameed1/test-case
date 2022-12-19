@@ -115,6 +115,7 @@ To check repos “helm repo list”
 
 7- To  Upgrade the old deployment use this command in the same directory as values.yml file `helm upgrade release-name -n namespace-name –values values.yml rasa-x/rasa-x`.
 If you are installing new release instead of upgrading the old one  then use `helm install release-name -n namespace-name –value values.yml rasa-x/rasa-x`. 
+
 8- To get pods `kubectl get pods -n namespace-name`.
 9- After running all pods get services with  `kubectl get svc -n namespace-name`
 
