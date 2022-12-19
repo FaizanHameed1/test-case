@@ -84,7 +84,7 @@ Note: `gs://rasax-models/models/` is address of bucket/subfolder which will chan
 8) To run the command in background detached mode `nohup watch -n 60 gsutil rsync models gs://rasax-models/models/`
 Note: After running on background detach mode you can close your terminal (that you have run inside container/pod). The command will run in every 60 seconds and if there will be a new model inside folder it will automatically upload it inside bucket. 
 
-#Problem Solved: Running the training on old as well as new data.
+# Problem Solved: Running the training on old as well as new data.
 
 1- Here is the updated Docker file contents which will use to build the image
 
@@ -106,42 +106,8 @@ Again `username` is my user name while `raspacy` is repo name and `3.2` is tag o
  
  3- Now go inside your helm folder. Open your values.yml file(The file from which rasax deployed using helm)
  4- Pull the image inside your helm chart by mentioning the image name.
-For example my values.yaml file is:
-`
- 
-rasax:
-   initialUser:
-       username: "admin"
-       password: "any"
-   passwordSalt: "any"
-   token: "any"
-   jwtSecret: "any"
-   tag: "0.39.3"
-rasa:
-       # name: "abdullahmakhdoom98/chatbot"
-       # tag: "latest"
-       name: "5532950/raspacy"
-       tag: "3.2"
-       versions:
-               rasaProduction:
-                       enabled: true
-               rasaWorker:
-                       enabled: true
- 
- 
-#old settings
-rabbitmq:
-       enabled: true
-       install: true
-       auth:
-               password: "any"
-               erlangCookie: "any"
- 
- 
- 
-debugMode: "true"
-`
 
+`
 5- After saving the values.yml file if you have pre deployed rasax than get the release name using `helm list -a -n namespace-name`. To get namespaces names `kubectl get namespace`. Assuming that you have done the setup of google cloud CLI and also installed kubectl, created the K8 cluster and installed helm. For help check https://github.com/FaizanHameed1/test-case
 
 6- Add rasax repo with  `helm repo add rasa-x https://rasahq.github.io/rasa-x-helm`
