@@ -104,8 +104,8 @@ Enter your user name and password.
 For example in my case I have completed this task by running this command `docker push username/raspacy:3.2`
 Again `username` is my user name while `raspacy` is repo name and `3.2` is tag of the image.
  
- 3- Now go inside your helm folder. Open your values.yml file(The file from which rasax deployed using helm)
- 4- Pull the image inside your helm chart by mentioning the image name.
+3- Now go inside your helm folder. Open your values.yml file(The file from which rasax deployed using helm)
+4- Pull the image inside your helm chart by mentioning the image name.
 
 `
 5- After saving the values.yml file if you have pre deployed rasax than get the release name using `helm list -a -n namespace-name`. To get namespaces names `kubectl get namespace`. Assuming that you have done the setup of google cloud CLI and also installed kubectl, created the K8 cluster and installed helm. For help check https://github.com/FaizanHameed1/test-case
@@ -122,10 +122,12 @@ If you are installing new release instead of upgrading the old one  then use `he
 10- Copy the external ip from load balancer service and run on browser `http://ip:8000`
 
 11- Login rasax with the help of credentials.
-12-Connect your repo with it.
-13-Run the training.
 
- 14-Done
+12- Connect your github/gitlab repo with rasa.
+
+13- Run the training.
+
+14- Done
 
 
 
